@@ -56,6 +56,13 @@ select{background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),
 .monto input::placeholder{color:#C9CEDA}
 .monto:focus-within{border-bottom-width:3px}
 .monto-hint{font-size:.8rem;color:var(--muted);margin:-12px 0 16px}
+.duracion{margin-bottom:6px}
+.chips{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.chips button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 4px;font-weight:600;color:var(--muted);cursor:pointer}
+.chips button[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:#fff}
+.otra{display:flex;align-items:center;gap:8px;margin-top:8px}
+.otra input{width:100px!important}
+.otra span{color:var(--muted);font-size:.9rem}
 .app[data-tipo="Clase"]{--tone:var(--ink)}
 
 .primary{width:100%;border:0;border-radius:13px;padding:15px;font-size:1.02rem;font-weight:700;background:var(--tone);color:#fff;cursor:pointer;transition:background .2s,opacity .2s}
@@ -119,6 +126,19 @@ h2{font-size:.95rem;font-weight:700;margin:30px 2px 10px}
         <select id="alumno"><option value="">Cargando alumnos…</option></select></label>
       <div class="saldo-actual" id="saldoActual" aria-live="polite"></div>
 
+      <div class="field duracion" id="duracion" hidden>
+        <span>¿Cuánto duró la clase?</span>
+        <div class="chips" role="group" aria-label="Duración">
+          <button type="button" data-h="1" aria-pressed="true">1 h</button>
+          <button type="button" data-h="1.5" aria-pressed="false">1½ h</button>
+          <button type="button" data-h="2" aria-pressed="false">2 h</button>
+          <button type="button" data-h="otra" aria-pressed="false">Otra</button>
+        </div>
+        <div class="otra" id="otraWrap" hidden>
+          <input type="text" id="horasOtra" inputmode="decimal" placeholder="2,5" aria-label="Horas"><span>horas</span>
+        </div>
+      </div>
+
       <label class="monto" aria-label="Monto">
         <span>$</span><input id="monto" inputmode="numeric" autocomplete="off" placeholder="0">
       </label>
@@ -154,6 +174,8 @@ h2{font-size:.95rem;font-weight:700;margin:30px 2px 10px}
 
   let tipo = 'Pago';
   let alumnos = [];
+  let horas = 1;          // duración elegida para "Clase dada"
+  let montoManual = false; // true si el usuario escribió el monto a mano
 
   // ---------- comunicación con la hoja ----------
   async function api(payload, url = store.get('url'), pin = store.get('pin')) {
@@ -218,9 +240,33 @@ h2{font-size:.95rem;font-weight:700;margin:30px 2px 10px}
     const e = estado(a.saldo);
     el.innerHTML = a.saldo === 0 ? 'Saldo actual: al día'
       : `Saldo actual: <b class="${e.cls}">${e.cls === 'debe' ? 'debe ' : ''}${fmt(a.saldo)}${e.cls === 'favor' ? ' a favor' : ''}</b>`;
-    $('montoHint').textContent = (tipo === 'Clase' && a.tarifa) ? `Tarifa por clase: ${fmt(a.tarifa)}` : '';
-    if (tipo === 'Clase' && !$('monto').value && a.tarifa) setMonto(a.tarifa);
+    recalcular();
   }
+
+  // Clase dada: monto = tarifa por hora × horas (salvo que lo hayas escrito a mano)
+  function recalcular() {
+    const a = alumnos.find(x => x.nombre === $('alumno').value);
+    const hint = $('montoHint');
+    if (tipo !== 'Clase' || !a) { hint.textContent = ''; return; }
+    if (!a.tarifa) { hint.textContent = 'Este alumno no tiene tarifa cargada en la hoja: escribí el monto.'; return; }
+    const calc = Math.round(a.tarifa * horas);
+    if (!montoManual && horas > 0) setMonto(calc);
+    hint.textContent = horas > 0
+      ? `${fmtHoras(horas)} × ${fmt(a.tarifa)} por hora = ${fmt(calc)}` + (montoManual && leerMonto() !== calc ? ' · monto editado a mano' : '')
+      : 'Ingresá cuántas horas duró.';
+  }
+
+  function setHoras(h) {
+    document.querySelectorAll('.chips button').forEach(b => b.setAttribute('aria-pressed', b.dataset.h === h));
+    const otra = h === 'otra';
+    $('otraWrap').hidden = !otra;
+    horas = otra ? leerHorasOtra() : Number(h);
+    if (otra) $('horasOtra').focus();
+    montoManual = false;
+    recalcular();
+  }
+  function leerHorasOtra() { return Number($('horasOtra').value.replace(',', '.')) || 0; }
+  function fmtHoras(h) { return (Number.isInteger(h) ? h : h.toLocaleString('es-AR')) + ' h'; }
 
   // ---------- utilidades ----------
   function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c])); }
@@ -234,7 +280,8 @@ h2{font-size:.95rem;font-weight:700;margin:30px 2px 10px}
     document.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', b.dataset.tipo === t));
     $('btnGuardar').textContent = t === 'Pago' ? 'Guardar pago' : 'Guardar clase';
     $('detalle').placeholder = t === 'Pago' ? 'Transferencia' : 'Tema de la clase';
-    setMonto('');
+    $('duracion').hidden = t !== 'Clase';
+    setMonto(''); montoManual = false;
     actualizarSaldoActual();
   }
 
@@ -245,8 +292,10 @@ h2{font-size:.95rem;font-weight:700;margin:30px 2px 10px}
 
   // ---------- eventos ----------
   document.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => setTipo(b.dataset.tipo)));
-  $('alumno').addEventListener('change', () => { store.set('ultimoAlumno', $('alumno').value); if (tipo === 'Clase') setMonto(''); actualizarSaldoActual(); });
-  $('monto').addEventListener('input', () => setMonto(leerMonto()));
+  $('alumno').addEventListener('change', () => { store.set('ultimoAlumno', $('alumno').value); montoManual = false; if (tipo === 'Clase') setMonto(''); actualizarSaldoActual(); });
+  $('monto').addEventListener('input', () => { setMonto(leerMonto()); montoManual = true; recalcular(); });
+  document.querySelectorAll('.chips button').forEach(b => b.addEventListener('click', () => setHoras(b.dataset.h)));
+  $('horasOtra').addEventListener('input', () => { horas = leerHorasOtra(); montoManual = false; recalcular(); });
   $('saldos').addEventListener('click', e => {
     const b = e.target.closest('[data-alumno]'); if (!b) return;
     $('alumno').value = b.dataset.alumno; $('alumno').dispatchEvent(new Event('change'));
@@ -273,12 +322,15 @@ h2{font-size:.95rem;font-weight:700;margin:30px 2px 10px}
     if (!monto) return toast($('msg'), 'Ingresá un monto mayor a cero.', 'err');
     const btn = $('btnGuardar'); btn.disabled = true; btn.textContent = 'Guardando…'; toast($('msg'), '', '');
     try {
-      const data = await api({ action: 'add', alumno, tipo, monto, fecha: $('fecha').value, detalle: $('detalle').value.trim() });
+      let detalle = $('detalle').value.trim();
+      if (tipo === 'Clase' && horas > 0) detalle = fmtHoras(horas) + (detalle ? ' · ' + detalle : '');
+      const data = await api({ action: 'add', alumno, tipo, monto, horas: tipo === 'Clase' ? horas : '', fecha: $('fecha').value, detalle });
       render(data);
       const a = alumnos.find(x => x.nombre === alumno), e = estado(a ? a.saldo : 0);
       const resto = !a || a.saldo === 0 ? 'queda al día' : e.cls === 'debe' ? `debe ${fmt(a.saldo)}` : `queda con ${fmt(a.saldo)} a favor`;
       toast($('msg'), `${tipo === 'Pago' ? 'Pago guardado' : 'Clase guardada'}. ${alumno} ${resto}.`, 'ok');
-      setMonto(''); $('detalle').value = '';
+      $('detalle').value = ''; montoManual = false;
+      if (tipo === 'Clase') setHoras('1'); else setMonto('');
     } catch (e) {
       toast($('msg'), 'No se guardó: ' + e.message, 'err');
     } finally {
