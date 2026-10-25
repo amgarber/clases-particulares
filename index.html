@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="es">
 <head>
@@ -25,17 +26,14 @@ body{padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
 .app{max-width:480px;margin:0 auto;padding:20px 18px 48px}
 button,input,select{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-
 header{display:flex;align-items:center;justify-content:space-between;margin:4px 0 22px}
 header h1{font-size:1.15rem;font-weight:700;margin:0;letter-spacing:-.01em}
 header p{margin:2px 0 0;color:var(--muted);font-size:.85rem}
 .icon-btn{border:0;background:transparent;padding:8px;border-radius:10px;cursor:pointer;color:var(--muted)}
 .icon-btn:hover{background:var(--line)}
-
 .seg{display:grid;grid-template-columns:1fr 1fr;background:var(--line);border-radius:12px;padding:4px;margin-bottom:18px}
 .seg button{border:0;background:transparent;padding:10px;border-radius:9px;font-weight:600;color:var(--muted);cursor:pointer}
 .seg button[aria-pressed="true"]{background:var(--card);color:var(--ink);box-shadow:0 1px 2px rgba(22,33,58,.08)}
-
 .panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
 .field{display:block;margin-bottom:14px}
 .field>span{display:block;font-size:.82rem;color:var(--muted);margin-bottom:6px;font-weight:500}
@@ -44,15 +42,12 @@ select,input[type=date],input[type=text],input[type=url],input[type=password]{
 select{background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);
   background-position:calc(100% - 18px) 52%,calc(100% - 13px) 52%;background-size:5px 5px;background-repeat:no-repeat;padding-right:34px}
 .row{display:grid;grid-template-columns:1fr 1.4fr;gap:10px}
-
 .saldo-actual{font-size:.88rem;margin:-6px 0 16px;min-height:1.2em;color:var(--muted)}
-.saldo-actual b.debe{color:var(--debt)} .saldo-actual b.favor{color:var(--pay)}
-
-/* El monto es el protagonista */
+.saldo-actual b.debe{color:var(--debt)}
+.saldo-actual b.favor{color:var(--pay)}
 .monto{display:flex;align-items:baseline;gap:6px;border-bottom:2px solid var(--tone);padding:6px 2px 8px;margin:4px 0 18px;transition:border-color .2s}
 .monto span{font-size:2rem;font-weight:600;color:var(--tone);transition:color .2s}
-.monto input{border:0;outline:0;background:transparent;width:100%;font-size:3.1rem;font-weight:700;letter-spacing:-.03em;
-  font-variant-numeric:tabular-nums;color:var(--tone);padding:0;transition:color .2s}
+.monto input{border:0;outline:0;background:transparent;width:100%;font-size:3.1rem;font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums;color:var(--tone);padding:0;transition:color .2s}
 .monto input::placeholder{color:#C9CEDA}
 .monto:focus-within{border-bottom-width:3px}
 .monto-hint{font-size:.8rem;color:var(--muted);margin:-12px 0 16px}
@@ -64,14 +59,11 @@ select{background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),
 .otra input{width:100px!important}
 .otra span{color:var(--muted);font-size:.9rem}
 .app[data-tipo="Clase"]{--tone:var(--ink)}
-
 .primary{width:100%;border:0;border-radius:13px;padding:15px;font-size:1.02rem;font-weight:700;background:var(--tone);color:#fff;cursor:pointer;transition:background .2s,opacity .2s}
 .primary:disabled{opacity:.5;cursor:default}
-
 .toast{margin:14px 0 0;padding:12px 14px;border-radius:12px;font-size:.92rem;display:none}
 .toast.ok{display:block;background:var(--pay-bg);color:var(--pay)}
 .toast.err{display:block;background:var(--debt-bg);color:var(--debt)}
-
 h2{font-size:.95rem;font-weight:700;margin:30px 2px 10px}
 .lista{list-style:none;margin:0;padding:0;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
 .lista li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 16px;border-top:1px solid var(--line)}
@@ -81,11 +73,12 @@ h2{font-size:.95rem;font-weight:700;margin:30px 2px 10px}
 .lista .s{font-size:.8rem;color:var(--muted);margin-top:2px}
 .lista .v{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
 .lista .v small{display:block;font-weight:500;font-size:.75rem}
-.debe{color:var(--debt)} .favor{color:var(--pay)} .aldia{color:var(--muted)}
+.debe{color:var(--debt)}
+.favor{color:var(--pay)}
+.aldia{color:var(--muted)}
 .vacio{padding:16px;color:var(--muted);font-size:.9rem}
 .total{display:flex;justify-content:space-between;font-size:.88rem;color:var(--muted);margin:8px 4px 0}
 .total b{color:var(--debt);font-variant-numeric:tabular-nums}
-
 #setup p{color:var(--muted);font-size:.9rem;line-height:1.5;margin:0 0 16px}
 [hidden]{display:none!important}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -99,22 +92,29 @@ h2{font-size:.95rem;font-weight:700;margin:30px 2px 10px}
       <p id="sub">Registro de pagos</p>
     </div>
     <button class="icon-btn" id="btnAjustes" aria-label="Configuración">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+      </svg>
     </button>
   </header>
 
   <!-- Configuración inicial -->
   <section id="setup" class="panel" hidden>
     <p>Conectá esta página con tu hoja de Google. Estos datos quedan guardados solo en este dispositivo.</p>
-    <label class="field"><span>URL de la aplicación web (Apps Script)</span>
-      <input type="url" id="cfgUrl" placeholder="https://script.google.com/macros/s/…/exec" autocomplete="off"></label>
-    <label class="field"><span>PIN</span>
-      <input type="password" id="cfgPin" autocomplete="off"></label>
+    <label class="field">
+      <span>URL de la aplicación web (Apps Script)</span>
+      <input type="url" id="cfgUrl" placeholder="https://script.google.com/macros/s/…/exec" autocomplete="off">
+    </label>
+    <label class="field">
+      <span>PIN</span>
+      <input type="password" id="cfgPin" autocomplete="off">
+    </label>
     <button class="primary" id="btnConectar">Conectar</button>
     <div class="toast" id="setupMsg" role="status"></div>
   </section>
 
-  <!-- Carga -->
+  <!-- Registro -->
   <section id="carga" hidden>
     <div class="seg" role="group" aria-label="Tipo de movimiento">
       <button type="button" data-tipo="Pago" aria-pressed="true">Pago recibido</button>
@@ -122,8 +122,13 @@ h2{font-size:.95rem;font-weight:700;margin:30px 2px 10px}
     </div>
 
     <div class="panel">
-      <label class="field"><span>Alumno</span>
-        <select id="alumno"><option value="">Cargando alumnos…</option></select></label>
+      <label class="field">
+        <span>Alumno</span>
+        <select id="alumno">
+          <option value="">Cargando alumnos…</option>
+        </select>
+      </label>
+
       <div class="saldo-actual" id="saldoActual" aria-live="polite"></div>
 
       <div class="field duracion" id="duracion" hidden>
@@ -135,18 +140,48 @@ h2{font-size:.95rem;font-weight:700;margin:30px 2px 10px}
           <button type="button" data-h="otra" aria-pressed="false">Otra</button>
         </div>
         <div class="otra" id="otraWrap" hidden>
-          <input type="text" id="horasOtra" inputmode="decimal" placeholder="2,5" aria-label="Horas"><span>horas</span>
+          <input type="text" id="horasOtra" inputmode="decimal" placeholder="2,5" aria-label="Horas">
+          <span>horas</span>
         </div>
       </div>
 
       <label class="monto" aria-label="Monto">
-        <span>$</span><input id="monto" inputmode="numeric" autocomplete="off" placeholder="0">
+        <span>$</span>
+        <input id="monto" inputmode="numeric" autocomplete="off" placeholder="0">
       </label>
       <p class="monto-hint" id="montoHint"></p>
 
+      <!-- NUEVO: Método de pago -->
+      <div id="medioPagoWrap">
+        <label class="field">
+          <span>¿Cómo te pagaron?</span>
+          <select id="medioPago">
+            <option value="">Elegí una opción</option>
+            <option value="Efectivo">Efectivo</option>
+            <option value="Transferencia">Transferencia</option>
+          </select>
+        </label>
+
+        <label class="field" id="bancoWrap" hidden>
+          <span>¿Dónde recibiste la transferencia?</span>
+          <select id="banco">
+            <option value="">Elegí una cuenta</option>
+            <option value="NaranjaX">NaranjaX</option>
+            <option value="Brubank">Brubank</option>
+            <option value="MercadoPago">MercadoPago</option>
+          </select>
+        </label>
+      </div>
+
       <div class="row">
-        <label class="field"><span>Fecha</span><input type="date" id="fecha"></label>
-        <label class="field"><span>Detalle (opcional)</span><input type="text" id="detalle" placeholder="Transferencia"></label>
+        <label class="field">
+          <span>Fecha</span>
+          <input type="date" id="fecha">
+        </label>
+        <label class="field">
+          <span>Detalle (opcional)</span>
+          <input type="text" id="detalle" placeholder="Nota adicional">
+        </label>
       </div>
 
       <button class="primary" id="btnGuardar">Guardar pago</button>
@@ -154,11 +189,15 @@ h2{font-size:.95rem;font-weight:700;margin:30px 2px 10px}
     </div>
 
     <h2>Saldos</h2>
-    <ul class="lista" id="saldos"><li class="vacio">Cargando…</li></ul>
+    <ul class="lista" id="saldos">
+      <li class="vacio">Cargando…</li>
+    </ul>
     <div class="total" id="total"></div>
 
     <h2>Últimos movimientos</h2>
-    <ul class="lista" id="recientes"><li class="vacio">Cargando…</li></ul>
+    <ul class="lista" id="recientes">
+      <li class="vacio">Cargando…</li>
+    </ul>
   </section>
 </main>
 
@@ -167,34 +206,51 @@ h2{font-size:.95rem;font-weight:700;margin:30px 2px 10px}
   const $ = id => document.getElementById(id);
   const app = document.querySelector('.app');
   const fmt = n => '$ ' + Math.abs(Math.round(n)).toLocaleString('es-AR');
+
   const store = {
-    get(k){ try { return localStorage.getItem(k) || ''; } catch { return ''; } },
-    set(k,v){ try { localStorage.setItem(k, v); } catch {} }
+    get(k) {
+      try { return localStorage.getItem(k) || ''; }
+      catch { return ''; }
+    },
+    set(k, v) {
+      try { localStorage.setItem(k, v); }
+      catch {}
+    }
   };
 
   let tipo = 'Pago';
   let alumnos = [];
-  let horas = 1;          // duración elegida para "Clase dada"
-  let montoManual = false; // true si el usuario escribió el monto a mano
+  let horas = 1;
+  let montoManual = false;
 
-  // ---------- comunicación con la hoja ----------
+  // Comunicación con Google Sheets
   async function api(payload, url = store.get('url'), pin = store.get('pin')) {
-    const res = await fetch(url, { method: 'POST', body: JSON.stringify({ ...payload, pin }) });
+    const res = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify({ ...payload, pin })
+    });
     const json = await res.json();
     if (!json.ok) throw new Error(json.error || 'Error desconocido.');
     return json.data;
   }
 
-  // ---------- pantallas ----------
+  // Pantallas
   function mostrarSetup(msg) {
-    $('carga').hidden = true; $('setup').hidden = false;
-    $('cfgUrl').value = store.get('url'); $('cfgPin').value = store.get('pin');
+    $('carga').hidden = true;
+    $('setup').hidden = false;
+    $('cfgUrl').value = store.get('url');
+    $('cfgPin').value = store.get('pin');
     toast($('setupMsg'), msg || '', 'err');
   }
-  function mostrarCarga() { $('setup').hidden = true; $('carga').hidden = false; }
+
+  function mostrarCarga() {
+    $('setup').hidden = true;
+    $('carga').hidden = false;
+  }
 
   function toast(el, text, kind) {
-    el.textContent = text; el.className = 'toast' + (text ? ' ' + kind : '');
+    el.textContent = text;
+    el.className = 'toast' + (text ? ' ' + kind : '');
   }
 
   function estado(saldo) {
@@ -203,32 +259,65 @@ h2{font-size:.95rem;font-weight:700;margin:30px 2px 10px}
     return { cls: 'aldia', txt: 'Al día' };
   }
 
-  // ---------- render ----------
+  // Renderizar datos
   function render(data) {
     alumnos = data.alumnos;
-    const sel = $('alumno'), prev = sel.value || store.get('ultimoAlumno');
+
+    const sel = $('alumno');
+    const prev = sel.value || store.get('ultimoAlumno');
+
     sel.innerHTML = alumnos.length
-      ? '<option value="">Elegí un alumno</option>' + alumnos.map(a => `<option>${esc(a.nombre)}</option>`).join('')
+      ? '<option value="">Elegí un alumno</option>' +
+        alumnos.map(a => `<option>${esc(a.nombre)}</option>`).join('')
       : '<option value="">No hay alumnos en la hoja</option>';
+
     if (alumnos.some(a => a.nombre === prev)) sel.value = prev;
 
     const orden = [...alumnos].sort((a, b) => a.saldo - b.saldo);
-    $('saldos').innerHTML = orden.length ? orden.map(a => {
-      const e = estado(a.saldo);
-      return `<li><button class="li" data-alumno="${esc(a.nombre)}">
-        <div><div class="n">${esc(a.nombre)}</div><div class="s">${esc(a.responsable || '')}${a.clases ? ' · ' + a.clases + (a.clases === 1 ? ' clase' : ' clases') : ''}</div></div>
-        <div class="v ${e.cls}">${a.saldo ? fmt(a.saldo) : '–'}<small>${e.txt}</small></div></button></li>`;
-    }).join('') : '<li class="vacio">Agregá alumnos en la pestaña Alumnos de la hoja.</li>';
 
-    const deuda = alumnos.reduce((s, a) => s + (a.saldo < 0 ? -a.saldo : 0), 0);
-    $('total').innerHTML = deuda ? `<span>Total que te deben</span><b>${fmt(deuda)}</b>` : '';
+    $('saldos').innerHTML = orden.length
+      ? orden.map(a => {
+          const e = estado(a.saldo);
+          return `<li>
+            <button class="li" data-alumno="${esc(a.nombre)}">
+              <div>
+                <div class="n">${esc(a.nombre)}</div>
+                <div class="s">${esc(a.responsable || '')}${a.clases ? ' · ' + a.clases + (a.clases === 1 ? ' clase' : ' clases') : ''}</div>
+              </div>
+              <div class="v ${e.cls}">
+                ${a.saldo ? fmt(a.saldo) : '–'}
+                <small>${e.txt}</small>
+              </div>
+            </button>
+          </li>`;
+        }).join('')
+      : '<li class="vacio">Agregá alumnos en la pestaña Alumnos de la hoja.</li>';
 
-    $('recientes').innerHTML = data.recientes.length ? data.recientes.map(m => {
-      const esPago = m.tipo === 'Pago';
-      return `<li><div><div class="n">${esc(m.alumno)}</div>
-        <div class="s">${fechaCorta(m.fecha)} · ${esc(m.tipo)}${m.detalle ? ' · ' + esc(m.detalle) : ''}</div></div>
-        <div class="v ${esPago ? 'favor' : ''}">${esPago ? '+ ' + fmt(m.pago) : fmt(m.cargo)}</div></li>`;
-    }).join('') : '<li class="vacio">Todavía no hay movimientos.</li>';
+    const deuda = alumnos.reduce(
+      (s, a) => s + (a.saldo < 0 ? -a.saldo : 0), 0
+    );
+
+    $('total').innerHTML = deuda
+      ? `<span>Total que te deben</span><b>${fmt(deuda)}</b>`
+      : '';
+
+    $('recientes').innerHTML = data.recientes.length
+      ? data.recientes.map(m => {
+          const esPago = m.tipo === 'Pago';
+          return `<li>
+            <div>
+              <div class="n">${esc(m.alumno)}</div>
+              <div class="s">
+                ${fechaCorta(m.fecha)} · ${esc(m.tipo)}
+                ${m.detalle ? ' · ' + esc(m.detalle) : ''}
+              </div>
+            </div>
+            <div class="v ${esPago ? 'favor' : ''}">
+              ${esPago ? '+ ' + fmt(m.pago) : fmt(m.cargo)}
+            </div>
+          </li>`;
+        }).join('')
+      : '<li class="vacio">Todavía no hay movimientos.</li>';
 
     actualizarSaldoActual();
   }
@@ -236,111 +325,346 @@ h2{font-size:.95rem;font-weight:700;margin:30px 2px 10px}
   function actualizarSaldoActual() {
     const a = alumnos.find(x => x.nombre === $('alumno').value);
     const el = $('saldoActual');
-    if (!a) { el.innerHTML = ''; $('montoHint').textContent = ''; return; }
+
+    if (!a) {
+      el.innerHTML = '';
+      $('montoHint').textContent = '';
+      return;
+    }
+
     const e = estado(a.saldo);
-    el.innerHTML = a.saldo === 0 ? 'Saldo actual: al día'
+
+    el.innerHTML = a.saldo === 0
+      ? 'Saldo actual: al día'
       : `Saldo actual: <b class="${e.cls}">${e.cls === 'debe' ? 'debe ' : ''}${fmt(a.saldo)}${e.cls === 'favor' ? ' a favor' : ''}</b>`;
+
     recalcular();
   }
 
-  // Clase dada: monto = tarifa por hora × horas (salvo que lo hayas escrito a mano)
+  // Cálculo automático de clases
   function recalcular() {
     const a = alumnos.find(x => x.nombre === $('alumno').value);
     const hint = $('montoHint');
-    if (tipo !== 'Clase' || !a) { hint.textContent = ''; return; }
-    if (!a.tarifa) { hint.textContent = 'Este alumno no tiene tarifa cargada en la hoja: escribí el monto.'; return; }
+
+    if (tipo !== 'Clase' || !a) {
+      hint.textContent = '';
+      return;
+    }
+
+    if (!a.tarifa) {
+      hint.textContent = 'Este alumno no tiene tarifa cargada en la hoja: escribí el monto.';
+      return;
+    }
+
     const calc = Math.round(a.tarifa * horas);
+
     if (!montoManual && horas > 0) setMonto(calc);
+
     hint.textContent = horas > 0
-      ? `${fmtHoras(horas)} × ${fmt(a.tarifa)} por hora = ${fmt(calc)}` + (montoManual && leerMonto() !== calc ? ' · monto editado a mano' : '')
+      ? `${fmtHoras(horas)} × ${fmt(a.tarifa)} por hora = ${fmt(calc)}` +
+        (montoManual && leerMonto() !== calc ? ' · monto editado a mano' : '')
       : 'Ingresá cuántas horas duró.';
   }
 
   function setHoras(h) {
-    document.querySelectorAll('.chips button').forEach(b => b.setAttribute('aria-pressed', b.dataset.h === h));
+    document.querySelectorAll('.chips button').forEach(b =>
+      b.setAttribute('aria-pressed', b.dataset.h === h)
+    );
+
     const otra = h === 'otra';
     $('otraWrap').hidden = !otra;
     horas = otra ? leerHorasOtra() : Number(h);
+
     if (otra) $('horasOtra').focus();
+
     montoManual = false;
     recalcular();
   }
-  function leerHorasOtra() { return Number($('horasOtra').value.replace(',', '.')) || 0; }
-  function fmtHoras(h) { return (Number.isInteger(h) ? h : h.toLocaleString('es-AR')) + ' h'; }
 
-  // ---------- utilidades ----------
-  function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c])); }
-  function hoy() { const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 10); }
-  function fechaCorta(iso) { const [y, m, d] = String(iso).split('-'); return d ? `${d}/${m}` : iso; }
-  function leerMonto() { return Number($('monto').value.replace(/\D/g, '')) || 0; }
-  function setMonto(n) { $('monto').value = n ? Number(n).toLocaleString('es-AR') : ''; }
+  function leerHorasOtra() {
+    return Number($('horasOtra').value.replace(',', '.')) || 0;
+  }
+
+  function fmtHoras(h) {
+    return (Number.isInteger(h) ? h : h.toLocaleString('es-AR')) + ' h';
+  }
+
+  // Utilidades
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, c => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    }[c]));
+  }
+
+  function hoy() {
+    const d = new Date();
+    d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+    return d.toISOString().slice(0, 10);
+  }
+
+  function fechaCorta(iso) {
+    const [y, m, d] = String(iso).split('-');
+    return d ? `${d}/${m}` : iso;
+  }
+
+  function leerMonto() {
+    return Number($('monto').value.replace(/\D/g, '')) || 0;
+  }
+
+  function setMonto(n) {
+    $('monto').value = n
+      ? Number(n).toLocaleString('es-AR')
+      : '';
+  }
 
   function setTipo(t) {
-    tipo = t; app.dataset.tipo = t;
-    document.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', b.dataset.tipo === t));
-    $('btnGuardar').textContent = t === 'Pago' ? 'Guardar pago' : 'Guardar clase';
-    $('detalle').placeholder = t === 'Pago' ? 'Transferencia' : 'Tema de la clase';
+    tipo = t;
+    app.dataset.tipo = t;
+
+    document.querySelectorAll('.seg button').forEach(b =>
+      b.setAttribute('aria-pressed', b.dataset.tipo === t)
+    );
+
+    $('btnGuardar').textContent =
+      t === 'Pago' ? 'Guardar pago' : 'Guardar clase';
+
+    $('detalle').placeholder =
+      t === 'Pago' ? 'Nota adicional' : 'Tema de la clase';
+
+    $('medioPagoWrap').hidden = t !== 'Pago';
     $('duracion').hidden = t !== 'Clase';
-    setMonto(''); montoManual = false;
+
+    setMonto('');
+    montoManual = false;
     actualizarSaldoActual();
   }
 
   async function cargar() {
-    try { render(await api({ action: 'data' })); }
-    catch (e) { mostrarSetup('No se pudo conectar con la hoja: ' + e.message); }
+    try {
+      render(await api({ action: 'data' }));
+    } catch (e) {
+      mostrarSetup('No se pudo conectar con la hoja: ' + e.message);
+    }
   }
 
-  // ---------- eventos ----------
-  document.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => setTipo(b.dataset.tipo)));
-  $('alumno').addEventListener('change', () => { store.set('ultimoAlumno', $('alumno').value); montoManual = false; if (tipo === 'Clase') setMonto(''); actualizarSaldoActual(); });
-  $('monto').addEventListener('input', () => { setMonto(leerMonto()); montoManual = true; recalcular(); });
-  document.querySelectorAll('.chips button').forEach(b => b.addEventListener('click', () => setHoras(b.dataset.h)));
-  $('horasOtra').addEventListener('input', () => { horas = leerHorasOtra(); montoManual = false; recalcular(); });
-  $('saldos').addEventListener('click', e => {
-    const b = e.target.closest('[data-alumno]'); if (!b) return;
-    $('alumno').value = b.dataset.alumno; $('alumno').dispatchEvent(new Event('change'));
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-  $('btnAjustes').addEventListener('click', () => mostrarSetup());
+  // Eventos
+  document.querySelectorAll('.seg button').forEach(b =>
+    b.addEventListener('click', () => setTipo(b.dataset.tipo))
+  );
 
-  $('btnConectar').addEventListener('click', async () => {
-    const url = $('cfgUrl').value.trim(), pin = $('cfgPin').value.trim();
-    if (!/^https:\/\/script\.google\.com\/.+\/exec$/.test(url)) return toast($('setupMsg'), 'La URL tiene que empezar con https://script.google.com/ y terminar en /exec.', 'err');
-    if (!pin) return toast($('setupMsg'), 'Ingresá el PIN que pusiste en el script.', 'err');
-    $('btnConectar').disabled = true; toast($('setupMsg'), '', '');
-    try {
-      const data = await api({ action: 'data' }, url, pin);
-      store.set('url', url); store.set('pin', pin);
-      mostrarCarga(); render(data);
-    } catch (e) { toast($('setupMsg'), 'No se pudo conectar: ' + e.message, 'err'); }
-    finally { $('btnConectar').disabled = false; }
+  $('alumno').addEventListener('change', () => {
+    store.set('ultimoAlumno', $('alumno').value);
+    montoManual = false;
+    if (tipo === 'Clase') setMonto('');
+    actualizarSaldoActual();
   });
 
-  $('btnGuardar').addEventListener('click', async () => {
-    const alumno = $('alumno').value, monto = leerMonto();
-    if (!alumno) return toast($('msg'), 'Elegí un alumno.', 'err');
-    if (!monto) return toast($('msg'), 'Ingresá un monto mayor a cero.', 'err');
-    const btn = $('btnGuardar'); btn.disabled = true; btn.textContent = 'Guardando…'; toast($('msg'), '', '');
-    try {
-      let detalle = $('detalle').value.trim();
-      if (tipo === 'Clase' && horas > 0) detalle = fmtHoras(horas) + (detalle ? ' · ' + detalle : '');
-      const data = await api({ action: 'add', alumno, tipo, monto, horas: tipo === 'Clase' ? horas : '', fecha: $('fecha').value, detalle });
-      render(data);
-      const a = alumnos.find(x => x.nombre === alumno), e = estado(a ? a.saldo : 0);
-      const resto = !a || a.saldo === 0 ? 'queda al día' : e.cls === 'debe' ? `debe ${fmt(a.saldo)}` : `queda con ${fmt(a.saldo)} a favor`;
-      toast($('msg'), `${tipo === 'Pago' ? 'Pago guardado' : 'Clase guardada'}. ${alumno} ${resto}.`, 'ok');
-      $('detalle').value = ''; montoManual = false;
-      if (tipo === 'Clase') setHoras('1'); else setMonto('');
-    } catch (e) {
-      toast($('msg'), 'No se guardó: ' + e.message, 'err');
-    } finally {
-      btn.disabled = false; btn.textContent = tipo === 'Pago' ? 'Guardar pago' : 'Guardar clase';
+  // NUEVO: Mostrar banco solo para transferencias
+  $('medioPago').addEventListener('change', () => {
+    const esTransferencia = $('medioPago').value === 'Transferencia';
+    $('bancoWrap').hidden = !esTransferencia;
+
+    if (!esTransferencia) {
+      $('banco').value = '';
     }
   });
 
-  // ---------- inicio ----------
+  $('monto').addEventListener('input', () => {
+    setMonto(leerMonto());
+    montoManual = true;
+    recalcular();
+  });
+
+  document.querySelectorAll('.chips button').forEach(b =>
+    b.addEventListener('click', () => setHoras(b.dataset.h))
+  );
+
+  $('horasOtra').addEventListener('input', () => {
+    horas = leerHorasOtra();
+    montoManual = false;
+    recalcular();
+  });
+
+  $('saldos').addEventListener('click', e => {
+    const b = e.target.closest('[data-alumno]');
+    if (!b) return;
+
+    $('alumno').value = b.dataset.alumno;
+    $('alumno').dispatchEvent(new Event('change'));
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  $('btnAjustes').addEventListener('click', () => mostrarSetup());
+
+  $('btnConectar').addEventListener('click', async () => {
+    const url = $('cfgUrl').value.trim();
+    const pin = $('cfgPin').value.trim();
+
+    if (!/^https:\/\/script\.google\.com\/.+\/exec$/.test(url)) {
+      return toast(
+        $('setupMsg'),
+        'La URL tiene que empezar con https://script.google.com/ y terminar en /exec.',
+        'err'
+      );
+    }
+
+    if (!pin) {
+      return toast(
+        $('setupMsg'),
+        'Ingresá el PIN que pusiste en el script.',
+        'err'
+      );
+    }
+
+    $('btnConectar').disabled = true;
+    toast($('setupMsg'), '', '');
+
+    try {
+      const data = await api({ action: 'data' }, url, pin);
+
+      store.set('url', url);
+      store.set('pin', pin);
+
+      mostrarCarga();
+      render(data);
+    } catch (e) {
+      toast(
+        $('setupMsg'),
+        'No se pudo conectar: ' + e.message,
+        'err'
+      );
+    } finally {
+      $('btnConectar').disabled = false;
+    }
+  });
+
+  // Guardar clases y pagos
+  $('btnGuardar').addEventListener('click', async () => {
+    const alumno = $('alumno').value;
+    const monto = leerMonto();
+
+    if (!alumno) {
+      return toast($('msg'), 'Elegí un alumno.', 'err');
+    }
+
+    if (!monto) {
+      return toast($('msg'), 'Ingresá un monto mayor a cero.', 'err');
+    }
+
+    // NUEVO: Validar método de pago
+    if (tipo === 'Pago' && !$('medioPago').value) {
+      return toast(
+        $('msg'),
+        'Elegí cómo recibiste el pago.',
+        'err'
+      );
+    }
+
+    if (
+      tipo === 'Pago' &&
+      $('medioPago').value === 'Transferencia' &&
+      !$('banco').value
+    ) {
+      return toast(
+        $('msg'),
+        'Elegí el banco o billetera.',
+        'err'
+      );
+    }
+
+    const btn = $('btnGuardar');
+    btn.disabled = true;
+    btn.textContent = 'Guardando…';
+    toast($('msg'), '', '');
+
+    try {
+      let detalle = $('detalle').value.trim();
+
+      if (tipo === 'Clase' && horas > 0) {
+        detalle = fmtHoras(horas) +
+          (detalle ? ' · ' + detalle : '');
+      }
+
+      // NUEVO: Guardar medio de pago en el detalle
+      if (tipo === 'Pago') {
+        const medio = $('medioPago').value === 'Transferencia'
+          ? 'Transferencia · ' + $('banco').value
+          : 'Efectivo';
+
+        detalle = medio + (detalle ? ' · ' + detalle : '');
+      }
+
+      const data = await api({
+        action: 'add',
+        alumno,
+        tipo,
+        monto,
+        horas: tipo === 'Clase' ? horas : '',
+        fecha: $('fecha').value,
+        detalle
+      });
+
+      render(data);
+
+      const a = alumnos.find(x => x.nombre === alumno);
+      const e = estado(a ? a.saldo : 0);
+
+      const resto = !a || a.saldo === 0
+        ? 'queda al día'
+        : e.cls === 'debe'
+          ? `debe ${fmt(a.saldo)}`
+          : `queda con ${fmt(a.saldo)} a favor`;
+
+      toast(
+        $('msg'),
+        `${tipo === 'Pago' ? 'Pago guardado' : 'Clase guardada'}. ${alumno} ${resto}.`,
+        'ok'
+      );
+
+      $('detalle').value = '';
+      montoManual = false;
+
+      // Limpiar selección después de guardar
+      if (tipo === 'Pago') {
+        $('medioPago').value = '';
+        $('banco').value = '';
+        $('bancoWrap').hidden = true;
+      }
+
+      if (tipo === 'Clase') {
+        setHoras('1');
+      } else {
+        setMonto('');
+      }
+
+    } catch (e) {
+      toast(
+        $('msg'),
+        'No se guardó: ' + e.message,
+        'err'
+      );
+    } finally {
+      btn.disabled = false;
+      btn.textContent = tipo === 'Pago'
+        ? 'Guardar pago'
+        : 'Guardar clase';
+    }
+  });
+
+  // Inicio
   $('fecha').value = hoy();
-  if (store.get('url') && store.get('pin')) { mostrarCarga(); cargar(); } else mostrarSetup();
+
+  if (store.get('url') && store.get('pin')) {
+    mostrarCarga();
+    cargar();
+  } else {
+    mostrarSetup();
+  }
 })();
 </script>
 </body>
